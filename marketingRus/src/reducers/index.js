@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import pitchReducer from './pitchReducer';
+import itemsReducer from './itemsReducer';
 
 export default combineReducers({
-    pitchReducer
+    itemsReducer
 });

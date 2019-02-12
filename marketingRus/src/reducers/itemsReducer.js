@@ -6,7 +6,7 @@ const iniState = {
     error: null
 }
 
-const pitchReducer = (state = iniState, action) => {
+const itemsReducer = (state = iniState, action) => {
     switch(action.type) {
         case FETCH_ITEMS:
             return {
@@ -26,4 +26,4 @@ const pitchReducer = (state = iniState, action) => {
     }
 }
 
-export default pitchReducer;
+export default itemsReducer;
