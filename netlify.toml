@@ -1,0 +1,4 @@
+[build] 
+base="marketingRus"
+command="yarn build"
+publish="marketingRus/build/"
