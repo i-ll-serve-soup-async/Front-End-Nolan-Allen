@@ -1,33 +1,30 @@
-import axios from 'axios';
+import React from 'react';
+import { connect } from 'react-redux';
+import { getItems } from '../store/actions';
+import ItemList from '../components/ItemList/ItemList';
 
-export const FETCH_ITEMS = 'FETCH_ITEMS';
-export const FETCH_ITEMS_SUCCESS = 'FETCH_ITEMS_SUCCESS';
-export const ADD_ITEM = 'ADD_ITEM';
-export const ADD_SUCCESS = 'ADD_SUCCESS';
-export const ACTION_ERROR = 'ACTION_ERROR';
+class ItemListView extends React.Component {
+    state = {
+        items: []
+    }
 
-export const getItems = () => dispatch => {
-    dispatch({ type: FETCH_ITEMS });
-    axios
-        .get("https://soup-kitchen-backend.herokuapp.com/api/items")
-        .then(res => {
-            dispatch({ type: FETCH_ITEMS_SUCCESS, results: res.data });
-        })
-        .catch(err => {
-            console.error(err);
-            dispatch({ type: ACTION_ERROR, error: err });
-        });
+    componentDidMount() {
+        this.props.getItems();
+    }
+
+    render() {
+        return (
+            <ItemList
+                history={this.props.history}
+                getItemById={this.props.getItemById}
+                items={this.props.items}
+            />
+        )
+    }
 }
 
-export const addItem = item => dispatch => {
-    dispatch({ type: ADD_ITEM });
-    axios
-        .post("https://soup-kitchen-backend.herokuapp.com/api/items", item)
-        .then(res => {
-            dispatch({ type: ADD_SUCCESS, results: res.data });
-        })
-        .catch(err => {
-            console.error(err);
-            dispatch({ type: ACTION_ERROR, error: err });
-        })
-}
+const mapPropsToState = state => ({
+    items: state.items
+})
+
+export default connect(mapPropsToState, { getItems })(ItemListView);

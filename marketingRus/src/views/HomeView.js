@@ -1,12 +1,12 @@
 import React from 'react';
-import Login from '../components/Home/Login';
 import Home from '../components/Home/Home';
+import ItemListView from './ItemListView'
 
 const HomeView = props => {
     return (
         <div>
-            <Login />
-            <Home history={props.history} />;
+            <Home history={props.history} />
+            <ItemListView />
         </div>
     );
 }
