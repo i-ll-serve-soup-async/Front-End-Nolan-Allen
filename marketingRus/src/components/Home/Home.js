@@ -1,16 +1,51 @@
 import React from 'react';
+import { Link, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getItems, addItem } from '../../store/actions';
+import ItemList from '../ItemList/ItemList';
+import ItemForm from '../ItemForm/ItemForm'
 
-function Home(props) {
-  const routeToMenu = e => {
-    e.preventDefault();
-    props.history.push('./item-list');
+class Home extends React.Component {
+  state = {
+    items: []
   }
 
-  return (
-    <div>
-      <button onClick={routeToMenu}>Order Now!</button>
-    </div>
-  )
+  componentDidMount() {
+    this.props.getItems();
+  }
+
+  addItems() {
+    this.props.addItem();
+  }
+
+  render() {
+    return (
+      <div>
+        <div>
+          <Link to='/'>Home</Link>
+          <Link to='/'>Add New Item</Link>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/item-form' component={ItemForm} />
+        </div>
+        <div>
+          {this.props.fetchingItems ? (
+            <p>Loading items . . .</p>
+          ) : (
+            <ItemList
+              history={this.props.history}
+              getItemById={this.props.getItemById}
+              items={this.props.items}
+            />
+          )}
+        </div>
+      </div>
+    )
+  }
 }
 
-export default Home;
+const mapPropsToState = state => ({
+  items: state.items,
+  fetchingItems: state.fetchingItems
+})
+
+export default connect(mapPropsToState, { getItems, addItem })(Home);

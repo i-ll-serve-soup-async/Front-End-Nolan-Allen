@@ -9,8 +9,13 @@ export const DELETE_ERROR = 'DELETE_ERROR';
 
 export const getItems = () => dispatch => {
     dispatch({ type: FETCH_ITEMS });
+    let auth = {
+        headers: {
+            authorization: localStorage.getItem("token")
+        }
+    };
     axios
-        .get("https://soup-kitchen-backend.herokuapp.com/api/items")
+        .get("https://soup-kitchen-backend.herokuapp.com/api/items", auth)
         .then(res => {
             dispatch({ type: FETCH_SUCCESS, payload: res.data });
         })

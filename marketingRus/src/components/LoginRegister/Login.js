@@ -8,8 +8,8 @@ const LoginPage = styled.div`
     height: auto;
     display: flex;
     flex-direction: column;
-    // justify-content: center;
-    // align-items: center;
+    justify-content: center;
+    align-items: center;
     background: white;
     // border: 1px solid maroon;
 `
@@ -20,8 +20,8 @@ const LoginForm = styled.form`
     margin-top: 17%;
     display: flex;
     flex-direction: column;
-    // justify-content: center;
-    // align-items: center;
+    justify-content: center;
+    align-items: center;
     // border: 1px solid red;
 `
 

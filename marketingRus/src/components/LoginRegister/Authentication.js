@@ -24,6 +24,7 @@ const Authentication = App => Login => {
                 email: e.target[0].value,
                 password: e.target[1].value
             }
+            console.log("What are these login credentials?", loginCredentials);
             axios
                 .post(
                     "https://soup-kitchen-backend.herokuapp.com/api/staff/login",
@@ -49,7 +50,7 @@ const Authentication = App => Login => {
             };
             axios
                 .post(
-                    "https://soup-kitchen-backend.herokuapp.com/api/staff/login",
+                    "https://soup-kitchen-backend.herokuapp.com/api/staff/register",
                     registerCredentials
                 )
                 .then(res => {
