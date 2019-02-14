@@ -8,7 +8,8 @@ class App extends React.Component {
     render() {
         return (
         <div>
-            <Route exact path='/' component={Home} />
+            Congrats. You made it.
+            {/* <Route exact path='/' component={Home} /> */}
         </div>
         );
     }

@@ -32,9 +32,9 @@ const Authentication = App => Login => {
                 )
                 .then(res => {
                     console.log(res.data);
-                    this.setState({ token: res.data.token })
-                    localStorage.getItem("token", res.data.token);
-                    this.setState({ loggedIn: true });
+                    // this.setState({ token: res.data.token })
+                    localStorage.setItem("token", res.data.token);
+                    this.setState({ isLoggedIn: true });
                 })
                 .catch(err => console.error(err));
         }
@@ -55,9 +55,9 @@ const Authentication = App => Login => {
                 )
                 .then(res => {
                     console.log(res.data.message);
-                    this.setState({ token: res.data.token })
-                    localStorage.getItem("token", res.data.token);
-                    this.setState({ loggedIn: true });
+                    // this.setState({ token: res.data.token })
+                    localStorage.setItem("token", res.data.token);
+                    this.setState({ isLoggedIn: true });
                 })
                 .catch(err => console.error(err));
         }
